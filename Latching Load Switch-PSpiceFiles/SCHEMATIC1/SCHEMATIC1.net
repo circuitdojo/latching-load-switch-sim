@@ -1,0 +1,24 @@
+* source LATCHING LOAD SWITCH
+V_V1         VBAT 0 4.4Vdc
+R_R1         N15538 VBAT  10k TC=0,0 
+R_R2         N15523 N15538  100k TC=0,0 
+R_R3         N15649 N15643  20k TC=0,0 
+R_R4         0 N15643  10k TC=0,0 
+R_R5         0 N15719  1k TC=0,0 
+C_C1         0 N15523  1u  TC=0,0 
+D_D1         N15643 N15719 Dbreak 
+X_M2         N15538 VBAT N15643 BSS110/INF
+X_M1         N15649 0 N15538 BSS138/INF
+V_V2         N16344 0  
++PULSE 0 2 0.8 0 0 5n 2
+X_M3         N16782 0 N15649 BSS138/INF
+X_U1         N15523 N15649 Sw_tClose PARAMS: tClose=0.25 ttran=1u Rclosed=0.01
++  Ropen=1Meg
+X_S1    N16344 0 N16782 VBAT SCHEMATIC1_S1 
+R_R6         0 N16782  1k TC=0,0 
+
+.subckt SCHEMATIC1_S1 1 2 3 4  
+S_S1         3 4 1 2 _S1
+RS_S1         1 2 1G
+.MODEL         _S1 VSWITCH Roff=1Meg Ron=1 Voff=0 Von=2
+.ends SCHEMATIC1_S1

@@ -1,0 +1,4 @@
+ lib=C:\Cadence\SPB_16.6\tools\pspice\library\infineon.lib, offset=499806, size=411
+ lib=C:\Cadence\SPB_16.6\tools\pspice\library\infineon.lib, offset=502078, size=465
+ lib=C:\Cadence\SPB_16.6\tools\PSpice\Library\breakout.lib, offset=431, size=44
+ lib=C:\Cadence\SPB_16.6\tools\PSpice\Library\anl_misc.lib, offset=21002, size=479

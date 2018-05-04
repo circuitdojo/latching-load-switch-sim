@@ -1,0 +1,260 @@
+
+**** 05/01/18 22:23:57 ****** PSpice Lite (October 2012) ****** ID# 10813 ****
+
+ ** Profile: "SCHEMATIC1-bias"  [ c:\users\jared\desktop\latching load switch-pspicefiles\schematic1\bias.sim ] 
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+** Creating circuit file "bias.cir" 
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT SIMULATIONS
+
+*Libraries: 
+* Profile Libraries :
+* Local Libraries :
+.LIB "C:/Cadence/SPB_16.6/tools/pspice/library/infineon.lib" 
+* From [PSPICE NETLIST] section of C:\Users\Jared\AppData\Roaming\SPB_Data\cdssetup\OrCAD_PSpice/16.6.0/PSpice.ini file:
+.lib "nomd.lib" 
+
+*Analysis directives: 
+.TRAN  0 1s 0 
+.OPTIONS ADVCONV
+.PROBE64 V(alias(*)) I(alias(*)) W(alias(*)) D(alias(*)) NOISE(alias(*)) 
+.INC "..\SCHEMATIC1.net" 
+
+
+
+**** INCLUDING SCHEMATIC1.net ****
+* source LATCHING LOAD SWITCH
+V_V1         VBAT 0 4.4Vdc
+R_R1         N15538 VBAT  10k TC=0,0 
+R_R2         N15523 N15538  100k TC=0,0 
+R_R3         N15649 N15643  20k TC=0,0 
+R_R4         0 N15643  10k TC=0,0 
+R_R5         0 N15719  1k TC=0,0 
+C_C1         0 N15523  1u  TC=0,0 
+D_D1         N15643 N15719 Dbreak 
+X_M2         N15538 VBAT N15643 BSS110/INF
+X_M1         N15649 0 N15538 BSS138/INF
+V_V2         N16344 0  
++PULSE 0 2 0.8 0 0 5n 2
+X_M3         N16782 0 N15649 BSS138/INF
+X_U1         N15523 N15649 Sw_tClose PARAMS: tClose=0.25 ttran=1u Rclosed=0.01
++  Ropen=1Meg
+X_S1    N16344 0 N16782 VBAT SCHEMATIC1_S1 
+R_R6         0 N16782  1k TC=0,0 
+
+.subckt SCHEMATIC1_S1 1 2 3 4  
+S_S1         3 4 1 2 _S1
+RS_S1         1 2 1G
+.MODEL         _S1 VSWITCH Roff=1Meg Ron=1 Voff=0 Von=2
+.ends SCHEMATIC1_S1
+
+**** RESUMING bias.cir ****
+.END
+
+**** 05/01/18 22:23:57 ****** PSpice Lite (October 2012) ****** ID# 10813 ****
+
+ ** Profile: "SCHEMATIC1-bias"  [ c:\users\jared\desktop\latching load switch-pspicefiles\schematic1\bias.sim ] 
+
+
+ ****     Diode MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               Dbreak          X_M2.DREV       X_M2.DCGD       X_M1.DREV       
+          IS   10.000000E-15  300.000000E-12   10.000000E-15  300.000000E-12 
+          BV                   50                              50            
+          RS     .1              .02                             .02         
+          TT                   60.000000E-09                   15.000000E-09 
+         CJO  100.000000E-15   35.000000E-12  183.000000E-12   60.000000E-12 
+          VJ                                    1.097                        
+           M                                     .439                        
+
+
+               X_M1.DCGD       X_M3.DREV       X_M3.DCGD       
+          IS   10.000000E-15  300.000000E-12   10.000000E-15 
+          BV                   50                            
+          RS                     .02                         
+          TT                   15.000000E-09                 
+         CJO   62.000000E-12   60.000000E-12   62.000000E-12 
+          VJ    1.174                           1.174        
+           M     .791                            .791        
+
+
+**** 05/01/18 22:23:57 ****** PSpice Lite (October 2012) ****** ID# 10813 ****
+
+ ** Profile: "SCHEMATIC1-bias"  [ c:\users\jared\desktop\latching load switch-pspicefiles\schematic1\bias.sim ] 
+
+
+ ****     MOSFET MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               X_M2.MBUZ       X_M2.MSW        X_M1.MBUZ       X_M1.MSW        
+               PMOS            PMOS            NMOS            NMOS            
+       LEVEL    1               1               1               1            
+           L  100.000000E-06  100.000000E-06  100.000000E-06  100.000000E-06 
+           W  100.000000E-06  100.000000E-06  100.000000E-06  100.000000E-06 
+         VTO   -1.462          -1.000000E-03    1.281           1.000000E-03 
+          KP     .04            5                .186           5            
+       GAMMA    0               0               0               0            
+         PHI     .6              .6              .6              .6          
+      LAMBDA    0               0               0               0            
+          IS   10.000000E-15   10.000000E-15   10.000000E-15   10.000000E-15 
+          JS    0               0               0               0            
+          PB     .8              .8              .8              .8          
+        PBSW     .8              .8              .8              .8          
+          CJ    0               0               0               0            
+        CJSW    0               0               0               0            
+        CGSO    0               0               0               0            
+        CGDO    0               0               0               0            
+        CGBO    0               0               0               0            
+         TOX    0               0               0               0            
+          XJ    0               0               0               0            
+       UCRIT   10.000000E+03   10.000000E+03   10.000000E+03   10.000000E+03 
+      DIOMOD    1               1               1               1            
+         VFB    0               0               0               0            
+        LETA    0               0               0               0            
+        WETA    0               0               0               0            
+          U0    0               0               0               0            
+        TEMP    0               0               0               0            
+         VDD    5               5               5               5            
+       XPART    0               0               0               0            
+
+
+               X_M1.MVRD       X_M3.MBUZ       X_M3.MSW        X_M3.MVRD       
+               NMOS            NMOS            NMOS            NMOS            
+       LEVEL    1               1               1               1            
+           L  100.000000E-06  100.000000E-06  100.000000E-06  100.000000E-06 
+           W  100.000000E-06  100.000000E-06  100.000000E-06  100.000000E-06 
+         VTO  -48.9             1.281           1.000000E-03  -48.9          
+          KP     .045            .186           5                .045        
+       GAMMA    0               0               0               0            
+         PHI     .6              .6              .6              .6          
+      LAMBDA    0               0               0               0            
+          IS   10.000000E-15   10.000000E-15   10.000000E-15   10.000000E-15 
+          JS    0               0               0               0            
+          PB     .8              .8              .8              .8          
+        PBSW     .8              .8              .8              .8          
+          CJ    0               0               0               0            
+        CJSW    0               0               0               0            
+        CGSO    0               0               0               0            
+        CGDO    0               0               0               0            
+        CGBO    0               0               0               0            
+         TOX    0               0               0               0            
+          XJ    0               0               0               0            
+       UCRIT   10.000000E+03   10.000000E+03   10.000000E+03   10.000000E+03 
+      DIOMOD    1               1               1               1            
+         VFB    0               0               0               0            
+        LETA    0               0               0               0            
+        WETA    0               0               0               0            
+          U0    0               0               0               0            
+        TEMP    0               0               0               0            
+         VDD    5               5               5               5            
+       XPART    0               0               0               0            
+
+
+**** 05/01/18 22:23:57 ****** PSpice Lite (October 2012) ****** ID# 10813 ****
+
+ ** Profile: "SCHEMATIC1-bias"  [ c:\users\jared\desktop\latching load switch-pspicefiles\schematic1\bias.sim ] 
+
+
+ ****     Voltage Controlled Switch MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               X_U1.Smod       X_S1._S1        
+         RON     .01            1            
+        ROFF    1.000000E+06    1.000000E+06 
+         VON    1               2            
+        VOFF    0               0            
+
+
+Starting pseudo-transient algorithm.
+
+**** 05/01/18 22:23:57 ****** PSpice Lite (October 2012) ****** ID# 10813 ****
+
+ ** Profile: "SCHEMATIC1-bias"  [ c:\users\jared\desktop\latching load switch-pspicefiles\schematic1\bias.sim ] 
+
+
+ ****     INITIAL TRANSIENT SOLUTION       TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+ NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
+
+
+( VBAT)    4.4000  (N15523)    3.9753 (N15538)    4.3614 (N15643)     .0386     
+
+(N15649)     .1158 (N15719) 72.66E-12 (N16344)    0.0000 (N16782)     .0044     
+
+(X_M1.4)     .1158 (X_M1.5)-19.70E-18 (X_M1.8)     .1158 (X_M2.4)    4.3614     
+
+(X_M2.5)    4.4000 (X_M2.8)    4.3614 (X_M3.4)     .0044 (X_M3.5)-22.24E-18     
+
+(X_M3.8)     .0044 (X_U1.3)    0.0000 (X_M1.11)     .1158                       
+
+(X_M1.76) 272.1E-12                   (X_M1.86)    4.3614                       
+
+(X_M1.95)    4.3614                   (X_M1.96)     .1554                       
+
+(X_M2.11)    4.3614                   (X_M2.76)    4.4000                       
+
+(X_M2.86)     .0386                   (X_M3.11)     .0044                       
+
+(X_M3.76) 257.9E-12                   (X_M3.86)     .1158                       
+
+(X_M3.95)     .1158                   (X_M3.96)     .0421                   
+
+
+
+
+    VOLTAGE SOURCE CURRENTS
+    NAME         CURRENT
+
+    V_V1        -8.257E-06
+    V_V2         0.000E+00
+    X_U1.V1      0.000E+00
+
+    TOTAL POWER DISSIPATION   3.63E-05  WATTS
+
+
+
+          JOB CONCLUDED
+
+**** 05/01/18 22:23:57 ****** PSpice Lite (October 2012) ****** ID# 10813 ****
+
+ ** Profile: "SCHEMATIC1-bias"  [ c:\users\jared\desktop\latching load switch-pspicefiles\schematic1\bias.sim ] 
+
+
+ ****     JOB STATISTICS SUMMARY
+
+
+******************************************************************************
+
+
+
+  Total job time (using Solver 1)   =         .14
+
